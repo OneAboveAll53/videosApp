@@ -1,16 +1,54 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="light">
+  <ion-toolbar>
     <ion-title>
-      Videos App
+      {{titulo}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="danger">
-  <img src="https://1.bp.blogspot.com/-gVy76NKQI18/W1cdmaDW6tI/AAAAAAAAl5A/qw4XxUeR_QYwY7M0cVMLfZ4O-5c1HveWQCLcBGAs/s1600/merlin-o-mago.jpg">
-  <h1>Tiago Castro</h1>
-  <p>É isso aí</p>
-  <a href="areadeteste">Area de Teste</a>
+<ion-content [fullscreen]="true">
+  <ion-searchbar (ionChange)="buscarFilmes($event)" placeholder="Buscar"></ion-searchbar>
 
+  <ion-list *ngIf="listaFilmes">
+
+    <ion-item lines="none" *ngIf="listaFilmes.results.length === 0">
+      <ion-label class="ion-text-center">
+        Não há filmes para exibir
+      </ion-label>
+    </ion-item>
+
+    <ion-item-sliding *ngFor="let filme of listaFilmes.results">
+
+    <ion-item lines="full" (click)="exibirFilme(filme)">
+      <ion-thumbnail slot="start">
+        <img *ngIf="filme.poster_path"
+          src="https://www.themoviedb.org/t/p/w500/{{filme.poster_path}}"
+        />
+        <ion-icon *ngIf="!filme.poster_path" name="videocam-off"></ion-icon>
+      </ion-thumbnail>
+
+      <ion-label class="ion-text-wrap">
+        <div>
+          <h1>{{filme.title}}</h1>
+          <p>{{filme.release_date | date: 'shortDate'}}</p>
+          <ion-badge color="light" *ngFor="let idGenero of filme.genre_ids">
+            {{generos[idGenero]}}
+          </ion-badge>
+        </div>
+      </ion-label>
+
+      <ion-chip [color]="filme.vote_average < 5 ? 'danger' : ((filme.vote_average < 7 ) ? 'warning' : 'success')" outline>
+        <ion-label>{{filme.vote_average}}</ion-label>
+      </ion-chip>
+    </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="success" (click)="exibirAlertaFavorito()">
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
 
 </ion-content>
