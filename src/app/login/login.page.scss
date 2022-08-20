@@ -1,0 +1,21 @@
+ion-content{
+  --background: #ffff00 url('../../assets/Blue\ Mountains.jpg') no-repeat center center / cover !important;
+}
+.center{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ion-text-center img{
+  width: 78px;
+  height: 78px;
+}
+.ion-text-center p{
+  font-family: 'flare','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18pt;
+  font-weight: lighter;
+  color: #a9a9a9;
+}

@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true">
+  <div class="center">
+
+    <ion-card-title class="ion-text-center">
+      <img src="../../assets/Logo Branco.png">
+      <p>CTRL-Tec</p>
+    </ion-card-title>
+
+    <ion-card color="transparent">
+
+
+      <ion-item lines="none" color="transparent">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" color="transparent">
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" [(ngModel)]="senha"></ion-input>
+      </ion-item>
+
+    </ion-card>
+
+    <ion-button (click)="login()" expand="full" fill="clear" color="light">
+      Login
+    </ion-button>
+
+    <ion-button expand="full" fill="clear" color="light">
+      Register
+    </ion-button>
+  </div>
+</ion-content>
